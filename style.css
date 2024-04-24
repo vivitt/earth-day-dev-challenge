@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css2?family=Bungee+Shade&display=swap");
+
+body {
+  background: #2980b9; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to bottom,
+    #ffffff,
+    #6dd5fa,
+    #2980b9
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    #ffffff,
+    #6dd5fa,
+    #2980b9
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5em;
+}
+
+.world-container {
+  height: 1200px;
+  width: 1200px;
+  max-width: 90%;
+}
+
+.hero path {
+  fill: transparent;
+}
+
+.hero text {
+  font-size: 3em;
+}
+
+.bungee-shade-regular {
+  font-family: "Bungee Shade", sans-serif;
+  font-style: normal;
+}
+
+.mundo {
+  position: absolute;
+  top: 35%;
+  max-width: 70%;
+}
+
+.small {
+  position: absolute;
+  top: 35%;
+  max-width: 30%;
+  animation: resize 2s;
+}
+
+h1 {
+  border: 3px solid rgb(25, 25, 221);
+}
+
+h2 {
+  border: 1px solid rgb(25, 25, 221);
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  border: 3px solid rgb(255, 0, 170);
+}
+
+article {
+  border: 3px solid rgb(212, 255, 0);
+}
+
+div {
+  border: 1px solid rgb(43, 0, 255);
+}
+
+a {
+  border: 1px dashed rgb(250, 250, 250);
+}
+
+p {
+  border: 1px dashed rgb(103, 91, 163);
+}
+
+.sr-only {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;
+}
+
+@keyframes resize {
+  from {
+    max-width: 70%;
+  }
+
+  to {
+    max-width: 30%;
+  }
+}
