@@ -1,20 +1,36 @@
+const addClass = (domEl, ...classes) => {
+  domEl.classList.add(...classes);
+};
+
+const removeClass = (domEl, ...classes) => {
+  domEl.classList.remove(...classes);
+};
+
+function supports_textPath() {
+  return !!document.createElement("svg");
+}
 const header = document.getElementsByTagName("header")[0];
-header.classList.add("bungee-shade-regular");
 
 const h1 = document.getElementsByTagName("h1")[0];
 
+if (window.screen.width > 700 && supports_textPath()) {
+  addClass(h1, "sr-only");
+}
 const hero = document.createElement("div");
-hero.classList.add("hero");
+addClass(hero, "hero");
 header.append(hero);
 
 const worldContainer = document.createElement("div");
-worldContainer.classList.add("world-container");
+addClass(worldContainer, "world-container");
 
-const svgCode = `<svg viewBox="-35 -50 915 500">
-<path id="curve" d="M3.02245 482.5C-48.9776 -133 883 -185 842.522 482.5" />
+const svgCode = `<svg viewBox="0 -70 700 300" id="svg-text" aria-hidden=true>
+<path id="curve" d="M1 167C172.5 -56.5002 500.5 -51 675.5 167" />
 <text width="500" >
-  <textPath xlink:href="#curve" startOffset="80">
-  Welcome to Our Earth Day Celebration!
+  <textPath xlink:href="#curve" startOffset="120" dominant-baseline="text-after-edge">
+  Welcome to Our
+  </textPath>
+  <textPath xlink:href="#curve"  dominant-baseline="hanging" startOffset="20">
+  Earth Day Celebration!
   </textPath>
 </text>
 </svg>`;
@@ -23,41 +39,70 @@ worldContainer.innerHTML = svgCode;
 
 /* HERO Illustration */
 const worldIllustration = document.createElement("div");
-worldIllustration.classList.add("world");
+addClass(worldIllustration, "world");
 
 /* World */
 const worldSvg = document.createElement("img");
 worldSvg.setAttribute("src", "mundo.svg");
 worldSvg.setAttribute("alt", "Smiling Planet Earth Illustration");
-worldSvg.classList.add("mundo");
+addClass(worldSvg, "mundo");
 worldIllustration.append(worldSvg);
 
 /* World face */
 const faceContainer = document.createElement("div");
-faceContainer.classList.add("face-container");
+addClass(faceContainer, "face-container");
 const faceSvg = document.createElement("div");
-faceSvg.classList.add("cara");
+addClass(faceSvg, "cara");
 faceContainer.append(faceSvg);
 worldIllustration.append(faceContainer);
 
-worldContainer.append(worldIllustration);
-hero.appendChild(worldContainer);
-h1.classList.add("sr-only");
+/* Clouds */
+const cloudLeft = document.createElement("div");
+const cloudRight = document.createElement("div");
+addClass(cloudLeft, "cloud", "cloud-left");
+addClass(cloudRight, "cloud", "cloud-right");
 
-document.addEventListener("DOMContentLoaded", function () {
-  const section = document.getElementsByTagName("section")[0];
-  window.onscroll = function () {
-    if (window.scrollY > 50) {
-      section.classList.add("animate-section");
-      worldIllustration.classList.add("small");
-      faceSvg.classList.add("animate-face");
+worldContainer.append(worldIllustration);
+hero.appendChild(cloudLeft);
+hero.appendChild(worldContainer);
+hero.appendChild(cloudRight);
+
+document.addEventListener("DOMContentLoaded", function (e) {
+  const svg = document.getElementById("svg-text");
+  let screenWidth = window.innerWidth;
+
+  window.onresize = function (e) {
+    screenWidth = window.innerWidth;
+    console.log(screenWidth);
+    if (screenWidth > 700 && supports_textPath()) {
+      addClass(h1, "sr-only");
+      svg.style.display = "block";
     } else {
-      section.classList.remove("animate-section");
-      worldIllustration.classList.remove("small");
-      faceSvg.classList.remove("animate-face");
+      removeClass(h1, "sr-only");
+      svg.style.display = "none";
     }
   };
 });
+
+// const saveScrollValue = function () {
+//   const scrollVal = window.scrollY;
+//   cloudLeft.style.transform = `translateX(calc(5px * ${scrollVal}/2)`;
+//   cloudRight.style.transform = `translateX(calc(-5px * ${scrollVal}/3)`;
+// };
+
+// document.addEventListener("DOMContentLoaded", function (e) {
+//   const section = document.getElementsByTagName("section")[0];
+
+//   window.onscroll = function (e) {
+//     saveScrollValue(e);
+
+//     if (window.scrollY > 400) {
+//       addClass(section, "animate-section");
+//     } else {
+//       removeClass(section, "animate-section");
+//     }
+//   };
+// });
 
 const pos = { x: 0, y: 0 };
 
@@ -72,10 +117,10 @@ const saveCursorPosition = function (x, y) {
 document.addEventListener("mousemove", (e) => {
   saveCursorPosition(e.clientX, e.clientY);
   if (e.clientX < 400) {
-    faceSvg.classList.add("look-left");
-    faceSvg.classList.remove("look-right");
+    addClass(faceSvg, "look-left");
+    removeClass(faceSvg, "look-right");
   } else {
-    faceSvg.classList.add("look-right");
-    faceSvg.classList.remove("look-left");
+    addClass(faceSvg, "look-right");
+    removeClass(faceSvg, "look-left");
   }
 });
