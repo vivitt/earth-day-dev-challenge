@@ -7,7 +7,10 @@ const removeClass = (domEl, ...classes) => {
 };
 
 function supports_textPath() {
-  return !!document.createElement("svg");
+  const svg = document.createElement("svg");
+  document.body.appendChild(svg);
+  console.log(!!document.body.getElementsByTagName("svg"));
+  return !!document.body.getElementsByTagName("svg");
 }
 const header = document.getElementsByTagName("header")[0];
 
@@ -84,25 +87,24 @@ document.addEventListener("DOMContentLoaded", function (e) {
   };
 });
 
-// const saveScrollValue = function () {
-//   const scrollVal = window.scrollY;
-//   cloudLeft.style.transform = `translateX(calc(5px * ${scrollVal}/2)`;
-//   cloudRight.style.transform = `translateX(calc(-5px * ${scrollVal}/3)`;
-// };
+const saveScrollValue = function () {
+  const scrollVal = window.scrollY;
+  cloudLeft.style.transform = `translateX(calc(5px * ${scrollVal}/2)`;
+  cloudRight.style.transform = `translateX(calc(-5px * ${scrollVal}/3)`;
+};
 
 // document.addEventListener("DOMContentLoaded", function (e) {
 //   const section = document.getElementsByTagName("section")[0];
 
-//   window.onscroll = function (e) {
-//     saveScrollValue(e);
+window.onscroll = function (e) {
+  saveScrollValue(e);
 
-//     if (window.scrollY > 400) {
-//       addClass(section, "animate-section");
-//     } else {
-//       removeClass(section, "animate-section");
-//     }
-//   };
-// });
+  // if (window.scrollY > 400) {
+  //   addClass(section, "animate-section");
+  // } else {
+  //   removeClass(section, "animate-section");
+  // }
+};
 
 const pos = { x: 0, y: 0 };
 

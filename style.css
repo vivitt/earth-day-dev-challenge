@@ -127,21 +127,17 @@ body {
 }
 
 .cloud-left {
-  --x: -1000px;
+  --x: -2500px;
   background-image: url(./nube-02.svg);
-  transform: translateX(var(--x));
-  animation: move-cloud-left 2s;
-  top: 500px;
-  animation-timeline: scroll(root block);
+  transform: translateX(0);
+  top: 400px;
 }
 
 .cloud-right {
-  --x: 1000px;
+  --x: 1800px;
   background-image: url(./nube-01.svg);
-  top: 1000px;
-  transform: translateX(var(--x));
-  animation: move-cloud-right 1.5s;
-  animation-timeline: scroll(root block);
+  top: 700px;
+  transform: translateX(-1800px);
 }
 
 h1 {
@@ -275,6 +271,11 @@ section article:nth-child(3) ul li::before {
   background-color: white;
   margin: 0;
   gap: 0;
+  font-family: var(--font-text);
+}
+
+.action-call h2 {
+  font-family: var(--font-text);
 }
 
 .testimonial {
