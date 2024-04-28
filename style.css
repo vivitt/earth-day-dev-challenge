@@ -549,6 +549,10 @@ footer a {
   header {
     height: 150vw;
   }
+
+  .world {
+    top: 40%;
+  }
   .cara {
     width: 50%;
   }
