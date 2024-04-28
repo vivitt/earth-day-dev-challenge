@@ -7,11 +7,9 @@ const removeClass = (domEl, ...classes) => {
 };
 
 function supports_textPath() {
-  const svg = document.createElement("svg");
-  document.body.appendChild(svg);
-  console.log(!!document.body.getElementsByTagName("svg"));
   return !!document.body.getElementsByTagName("svg");
 }
+
 const header = document.getElementsByTagName("header")[0];
 
 const h1 = document.getElementsByTagName("h1")[0];
@@ -76,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   window.onresize = function (e) {
     screenWidth = window.innerWidth;
-    console.log(screenWidth);
     if (screenWidth > 700 && supports_textPath()) {
       addClass(h1, "sr-only");
       svg.style.display = "block";
@@ -108,8 +105,6 @@ window.onscroll = function (e) {
 
 const pos = { x: 0, y: 0 };
 
-const root = document.querySelector(":root");
-
 const saveCursorPosition = function (x, y) {
   pos.x = (x / window.innerWidth).toFixed(2);
   pos.y = (y / window.innerHeight).toFixed(2);
@@ -126,3 +121,35 @@ document.addEventListener("mousemove", (e) => {
     removeClass(faceSvg, "look-left");
   }
 });
+
+/* -------- take action ------- */
+const takeActionSection = document.getElementsByClassName("action-call")[0];
+const takeActionHeading = takeActionSection.children[0];
+
+const takeActionBanner = document.createElement("div");
+addClass(takeActionBanner, "action-call__banner");
+addClass(takeActionHeading, "sr-only");
+takeActionBanner.setAttribute("aria-hidden", true);
+takeActionBanner.innerHTML =
+  "<span>Take Action Now</span> <span>Take Action Now</span> <span>Take Action Now</span> <span>Take Action Now</span>  ";
+takeActionSection.prepend(takeActionBanner);
+
+/* -------- Events ------- */
+
+const eventsSection = document.getElementsByClassName("events")[0];
+const eventsHeading = eventsSection.children[0];
+const eventsBanner = document.createElement("div");
+addClass(eventsBanner, "events__banner");
+addClass(eventsHeading, "sr-only");
+eventsBanner.setAttribute("aria-hidden", true);
+eventsBanner.innerHTML =
+  "<span>Join an Event</span> <span>Join an Event</span> <span>Join an Event</span> <span>Join an Event</span>  ";
+eventsSection.prepend(eventsBanner);
+
+/* -------- Footer ------- */
+const footer = document.getElementsByTagName("footer")[0];
+
+const credit = document.createElement("div");
+
+credit.innerHTML = `<p class='credit'>Created with ❤️ by <a href='' target='blank'>@vivitt</a>.</p>`;
+footer.appendChild(credit);
