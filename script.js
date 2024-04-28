@@ -35,10 +35,8 @@ const svgCode = `<svg viewBox="0 -70 700 300" id="svg-text" aria-hidden=true >
 </text>
 </svg>`;
 
-if (window.innerWidth > 550) {
-  hero.innerHTML = svgCode;
-  addClass(h1, "sr-only");
-}
+hero.innerHTML = svgCode;
+addClass(h1, "sr-only");
 
 /* HERO Illustration */
 const worldIllustration = document.createElement("div");
