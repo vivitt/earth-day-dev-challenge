@@ -80,11 +80,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
 
   window.onresize = function (e) {
     screenWidth = window.innerWidth;
-    if (screenWidth > 550) {
-      addClass(h1, "sr-only");
-    } else {
-      document.removeChild(svg);
-    }
 
     if (screenWidth > 700 && supports_scroll()) {
       addClass(worldIllustration, "world--scroll");

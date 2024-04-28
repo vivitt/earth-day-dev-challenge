@@ -564,10 +564,11 @@ footer a {
   }
 
   section {
-    padding-top: 4em;
+    padding-top: 7em;
     display: flex;
     flex-direction: column;
     gap: 0;
+    padding-right: 0em;
   }
 
   .facts > article {
@@ -576,6 +577,9 @@ footer a {
   }
   .facts h2 {
     border-radius: 15em 0 0 15em;
+    font-size: 4em;
+    right: 0;
+    align-self: end;
   }
   .facts p {
     max-width: 90%;
