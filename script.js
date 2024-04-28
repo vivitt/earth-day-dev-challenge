@@ -6,17 +6,16 @@ const removeClass = (domEl, ...classes) => {
   domEl.classList.remove(...classes);
 };
 
-function supports_textPath() {
-  return !!document.body.getElementsByTagName("svg");
+function supports_scroll() {
+  return !!CSS.supports("animation-timeline: scroll()");
 }
+
+/* -------- Header ------- */
 
 const header = document.getElementsByTagName("header")[0];
 
 const h1 = document.getElementsByTagName("h1")[0];
-
-if (window.screen.width > 700 && supports_textPath()) {
-  addClass(h1, "sr-only");
-}
+addClass(h1, "sr-only");
 const hero = document.createElement("div");
 addClass(hero, "hero");
 header.append(hero);
@@ -24,7 +23,7 @@ header.append(hero);
 const worldContainer = document.createElement("div");
 addClass(worldContainer, "world-container");
 
-const svgCode = `<svg viewBox="0 -70 700 300" id="svg-text" aria-hidden=true>
+const svgCode = `<svg viewBox="0 -70 700 300" id="svg-text" aria-hidden=true >
 <path id="curve" d="M1 167C172.5 -56.5002 500.5 -51 675.5 167" />
 <text width="500" >
   <textPath xlink:href="#curve" startOffset="120" dominant-baseline="text-after-edge">
@@ -36,17 +35,15 @@ const svgCode = `<svg viewBox="0 -70 700 300" id="svg-text" aria-hidden=true>
 </text>
 </svg>`;
 
-worldContainer.innerHTML = svgCode;
+hero.innerHTML = svgCode;
 
 /* HERO Illustration */
 const worldIllustration = document.createElement("div");
-addClass(worldIllustration, "world");
 
 /* World */
 const worldSvg = document.createElement("img");
 worldSvg.setAttribute("src", "mundo.svg");
 worldSvg.setAttribute("alt", "Smiling Planet Earth Illustration");
-addClass(worldSvg, "mundo");
 worldIllustration.append(worldSvg);
 
 /* World face */
@@ -68,18 +65,21 @@ hero.appendChild(cloudLeft);
 hero.appendChild(worldContainer);
 hero.appendChild(cloudRight);
 
+/* **** */
+addClass(worldIllustration, "world");
+if (window.screen.width > 700 && supports_scroll()) {
+  addClass(worldIllustration, "world--scroll");
+}
 document.addEventListener("DOMContentLoaded", function (e) {
   const svg = document.getElementById("svg-text");
   let screenWidth = window.innerWidth;
 
   window.onresize = function (e) {
     screenWidth = window.innerWidth;
-    if (screenWidth > 700 && supports_textPath()) {
-      addClass(h1, "sr-only");
-      svg.style.display = "block";
+    if (screenWidth > 700 && supports_scroll()) {
+      addClass(worldIllustration, "world--scroll");
     } else {
-      removeClass(h1, "sr-only");
-      svg.style.display = "none";
+      removeClass(worldIllustration, "world--scroll");
     }
   };
 });
@@ -90,17 +90,8 @@ const saveScrollValue = function () {
   cloudRight.style.transform = `translateX(calc(-5px * ${scrollVal}/3)`;
 };
 
-// document.addEventListener("DOMContentLoaded", function (e) {
-//   const section = document.getElementsByTagName("section")[0];
-
 window.onscroll = function (e) {
   saveScrollValue(e);
-
-  // if (window.scrollY > 400) {
-  //   addClass(section, "animate-section");
-  // } else {
-  //   removeClass(section, "animate-section");
-  // }
 };
 
 const pos = { x: 0, y: 0 };
