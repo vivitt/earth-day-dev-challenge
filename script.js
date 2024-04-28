@@ -15,7 +15,7 @@ function supports_scroll() {
 const header = document.getElementsByTagName("header")[0];
 
 const h1 = document.getElementsByTagName("h1")[0];
-addClass(h1, "sr-only");
+
 const hero = document.createElement("div");
 addClass(hero, "hero");
 header.append(hero);
@@ -35,7 +35,10 @@ const svgCode = `<svg viewBox="0 -70 700 300" id="svg-text" aria-hidden=true >
 </text>
 </svg>`;
 
-hero.innerHTML = svgCode;
+if (window.innerWidth > 550) {
+  hero.innerHTML = svgCode;
+  addClass(h1, "sr-only");
+}
 
 /* HERO Illustration */
 const worldIllustration = document.createElement("div");
@@ -67,15 +70,22 @@ hero.appendChild(cloudRight);
 
 /* **** */
 addClass(worldIllustration, "world");
-if (window.screen.width > 700 && supports_scroll()) {
+if (window.innerWidth > 700 && supports_scroll()) {
   addClass(worldIllustration, "world--scroll");
 }
+
 document.addEventListener("DOMContentLoaded", function (e) {
   const svg = document.getElementById("svg-text");
   let screenWidth = window.innerWidth;
 
   window.onresize = function (e) {
     screenWidth = window.innerWidth;
+    if (screenWidth > 550) {
+      addClass(h1, "sr-only");
+    } else {
+      document.removeChild(svg);
+    }
+
     if (screenWidth > 700 && supports_scroll()) {
       addClass(worldIllustration, "world--scroll");
     } else {
