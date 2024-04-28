@@ -546,6 +546,9 @@ footer a {
     max-width: 700px;
     overflow-x: hidden;
   }
+  header {
+    height: 150vw;
+  }
   .cara {
     width: 50%;
   }
