@@ -573,6 +573,9 @@ footer a {
     gap: 0;
     padding-right: 0em;
   }
+  section p {
+    font-size: 1.9em;
+  }
 
   .facts > article {
     margin: 0;
