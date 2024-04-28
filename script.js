@@ -142,5 +142,5 @@ const footer = document.getElementsByTagName("footer")[0];
 
 const credit = document.createElement("div");
 
-credit.innerHTML = `<p class='credit'>Created with ❤️ by <a href='' target='blank'>@vivitt</a>.</p>`;
+credit.innerHTML = `<p class='credit'>Created with ❤️ by <a href='https://github.com/vivitt' target='blank'>@vivitt</a>.</p>`;
 footer.appendChild(credit);
